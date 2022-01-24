@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+
+using namespace std;
+
+string name;
+int score;
+
+
+int main ()				// printing the name/score and play area
+{
+  cout << "Please type your name: ";
+  cin >> name;
+  cout << endl;
+  cout << "name: " << name << endl;
+  cout << "score: " << score << endl;
+
+  int top = 0;
+  int mid = 0;
+  if (top = 0 || top > 10)	// draw top
+    {
+      cout << "-";
+      top++;
+    }
+  cout << endl;
+  if (mid = 0, top = 10)
+    {
+      cout << "|";
+      mid++;
+    }
+  else if (mid = 1 || top > 10)
+    {
+      cout << " ";
+      mid++;
+    }
+  else
+    {
+      cout << endl;
+    }
+
+  return 0;
+}
