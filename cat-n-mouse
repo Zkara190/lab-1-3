@@ -1,3 +1,8 @@
+/* This code is for course EE245, MNSU
+Writers: Nathan, Zeynel
+Description: This code will eventually become a game of cat and mouse
+Program name: Cat and mouse */
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -14,7 +19,7 @@ int main ()				// printing the name/score and play area
   cin >> name;
   cout << endl;
   cout << "name: " << name << endl;
-  cout << "score: " << score << endl;
+  cout << "score: " << score << endl; // getting the players name
 
   int top = 0;
   int mid = 0;
