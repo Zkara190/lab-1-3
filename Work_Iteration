@@ -23,9 +23,9 @@ int cp_xo = 3, cp_yo = 3;
 void drawbox() {
      int x = 0;int y=0;
      int t = 7;
-      for (int i=0; i<7; ++i)
+      for (int i=0; i<8; ++i)
        {
-        for (int j=0; j<7; ++j)
+        for (int j=0; j<8; ++j)
             { 
                 cout << box[i][j];
             }
@@ -34,19 +34,19 @@ void drawbox() {
        	for (int i = 0; i <= t; i++){
 				for (int j = 0; j <= t; j++){ 
 					if 	(i == 0) {
-						if (j == 0){box[i][j] = char(218);}
-						else if (j < t and j !=0) {box[i][j] = char(196);}				// '-'
-						else if (j == t) {box[i][j] = char(191);}
+						if (j == 0){box[i][j] = 'A';}
+						else if (j < t and j !=0) {box[i][j] = 'B';}				// '-'
+						else if (j == t) {box[i][t] = 'C';}
 					}
 					else if (i < t and i != 0){
-						if(j == 0) {box[i][j] = char(179);}						//'|'
+						if(j == 0) {box[i][j] = 'D';}						//'|'
 						else if (j < t and j !=0) {box[i][j] = ' ';}						//' '
-						else if (j == t) {box[i][j] = 'a';}//char(179);}				
+						else if (j == t) {box[i][j] = 'E';}//char(179);}				
 					}
 					else if (i == t){
-						if (j == 0) {box[i][j] = char(192);}
-						else if (j < t and j !=0) {box[t][j] = char(196);}				// '_'
-						else if (j == t) {box[i][j] = char(217);}				// 'L'
+						if (j == 0) {box[i][j] = 'F';}
+						else if (j < t and j !=0) {box[t][j] = 'G';}				// '_'
+						else if (j == t) {box[i][j] = 'H';}				// 'L'
 					}
 				}
 			}
