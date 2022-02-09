@@ -1,0 +1,174 @@
+/* This code is for course EE245, MNSU
+Writers: Nathan, Zeynel
+Description: This code will eventually become a game of cat and mouse
+Program name: Cat and mouse */
+
+#include <iostream>
+#include <string>
+#include <cstdlib>
+
+using namespace std;
+
+string name;
+int score;
+char box[7][7];
+int xposition =3, yposition =3; 
+int oldx =3, oldy =3;
+int erx=3, ery=3;
+
+/*int cp_x = 3, cp_y =3;
+int cp_xo = 3, cp_yo = 3;
+*/
+
+void drawbox() {
+     int x = 0;int y=0;
+     int t = 7;
+      for (int i=0; i<7; ++i)
+       {
+        for (int j=0; j<7; ++j)
+            { 
+                cout << box[i][j];
+            }
+         cout << '\n';
+       }
+       	for (int i = 0; i <= t; i++){
+				for (int j = 0; j <= t; j++){ 
+					if 	(i == 0) {
+						if (j == 0){box[i][j] = char(218);}
+						else if (j < t and j !=0) {box[i][j] = char(196);}				// '-'
+						else if (j == t) {box[i][j] = char(191);}
+					}
+					else if (i < t and i != 0){
+						if(j == 0) {box[i][j] = char(179);}						//'|'
+						else if (j < t and j !=0) {box[i][j] = ' ';}						//' '
+						else if (j == t) {box[i][j] = 'a';}//char(179);}				
+					}
+					else if (i == t){
+						if (j == 0) {box[i][j] = char(192);}
+						else if (j < t and j !=0) {box[t][j] = char(196);}				// '_'
+						else if (j == t) {box[i][j] = char(217);}				// 'L'
+					}
+				}
+			}
+       
+       cout<< endl;
+            
+    }
+void pmovement(int G) {
+        G=G-1;
+        int cp_x;
+        cp_x= xposition;
+        int cp_y;
+        cp_y = yposition;
+        
+        int cp_xo = oldx, cp_yo = oldy;
+
+
+//for (int q=0; q > 1; q++) {  
+     int movement = 0;
+     cin >> movement;
+    
+    if(movement == 8)               //y
+        {
+            if (ery > 1){
+                ery--;  
+                cp_yo = cp_y;
+                cp_y = cp_y - 7;
+               // q++;
+            }
+            else{
+                cout << "You shoved your head in the wall";
+            }
+        }
+    else if(movement == 2)          //y
+        {
+            if (ery < G -1){
+                ery++;  
+                cp_yo = cp_y;
+                cp_y = cp_y + 7;
+               // q++;
+            }
+            else{
+                cout << "You shoved your head in the wall";
+            }            
+        }
+    else if(movement == 4)          //x
+        {
+
+            if (erx > 1){
+                erx--;  
+                cp_xo = cp_x;
+                cp_yo =cp_y;
+                cp_y = cp_y -1;
+               // q++;
+            }
+            else{
+                cout << "You shoved your head in the wall";
+            }          
+
+
+        }
+    else if(movement == 6)          //x
+        { 
+            
+            if (erx < G-1){
+                erx++;  
+                cp_xo = cp_x;
+                cp_yo = cp_y;
+                cp_y = cp_y +1;
+
+               // q++;
+            }
+            else{
+                cout << "You shoved your head in the wall";
+            }          
+
+
+        }
+    else {
+        cout << "wrong inputs, only 8,6,2,4 are valid inputs";
+        //cin >> movement;
+    }   
+
+
+
+    box[cp_xo][cp_yo] = ' ';   
+    box[cp_x][cp_y] = 'P';
+    cout << cp_x << cp_y << cp_xo << cp_yo << endl;
+    
+    xposition = cp_x; yposition = cp_y;
+    oldx = cp_xo; oldy = cp_yo;
+   // drawbox();
+}
+    
+    
+int main ()				// printing the name/score and play area
+{
+  /*cout << "Please type your name: ";
+  cin >> name;
+  cout << endl;
+  cout << "name: " << name << endl;
+  cout << "score: " << score << endl; // getting the players name */
+
+    int x ,y;
+    int t = 7;
+
+			//loading
+			
+    drawbox();
+    box[3][3]  = 'P';
+    drawbox();
+    
+  for(int i; i=5; i++ ){
+    pmovement(t); 
+    drawbox();
+    } 
+
+    
+
+    
+
+    return 0;
+    
+    
+}
