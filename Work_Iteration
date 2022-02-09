@@ -82,7 +82,7 @@ void pmovement(int G) {
         }
     else if(movement == 2)          //y
         {
-            if (ery < G -1){
+            if (ery < G ){
                 ery++;  
                 cp_yo = cp_y;
                 cp_y = cp_y + 7;
@@ -111,7 +111,7 @@ void pmovement(int G) {
     else if(movement == 6)          //x
         { 
             
-            if (erx < G-1){
+            if (erx < G){
                 erx++;  
                 cp_xo = cp_x;
                 cp_yo = cp_y;
