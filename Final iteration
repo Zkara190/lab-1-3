@@ -1,0 +1,284 @@
+/* This code is for course EE245, MNSU
+Writers: Nathan, Zeynel
+Description: This code will eventually become a game of cat and mouse
+Program name: Cat and mouse */
+
+#include <iostream>
+#include <string>
+#include <cstdlib>
+
+using namespace std;
+
+		string name;
+		int score = 0;
+		char box[7][7];
+		int xposition =3, yposition =3, xmposition = 1, ymposition = 1; 
+		int oldx =3, oldy =3, moldx = 1, moldy = 1;
+		int erx=3, ery=3, merx = 1, mery =1;
+		int U;
+
+
+/*int cp_x = 3, cp_y =3;
+int cp_xo = 3, cp_yo = 3;
+*/
+
+void caught(){
+	if (xposition || moldx) {
+		if(yposition || moldy){
+		score++;
+		cout << "Congrats it's dead!" << "SAME" << endl;
+			}
+	}	
+    else if (xposition || xmposition) {
+		if (yposition || ymposition){
+		score++;
+		cout << "Congrats it's dead!" << "SAME" << endl;
+		}
+	}
+}
+
+void mousemovement(int G) {
+    int mdirection=0;
+    mdirection = rand() % 4 +1;
+    //cout << mdirection << endl;
+    U=G-1;
+    int mp_x;
+    mp_x = xmposition;
+    int mp_y;
+    mp_y = ymposition;
+        
+    int mp_xo;
+    mp_xo = moldx;
+    int mp_yo;
+    mp_yo = moldy;
+
+
+    if(mdirection == 1)               //y
+        {
+            if (mery > 1){
+                mery--;  
+                mp_yo = mp_y;
+                mp_y = mp_y - 7;
+               // q++;
+            }
+            else{
+                mousemovement(U);
+                cout << "OUCH!";
+            }
+        }
+    else if(mdirection == 2)          //y
+        {
+            if (mery < G ){
+                mery++;  
+                mp_yo = mp_y;
+                mp_y = mp_y + 7;
+               // q++;
+            }
+            else{
+               mousemovement(U);
+                cout << "OUCH!";
+            }            
+        }
+    else if(mdirection == 3)          //x
+        {
+
+            if (merx > 1){
+                merx--;  
+                mp_xo = mp_x;
+                mp_yo = mp_y;
+                mp_y = mp_y -1;
+               // q++;
+            }
+            else{
+                mousemovement(U);
+                cout << "OUCH!";
+            }          
+
+
+        }
+    else if(mdirection == 4)          //x
+        { 
+            
+            if (merx < G){
+                merx++;  
+                mp_xo = mp_x;
+                mp_yo = mp_y;
+                mp_y = mp_y +1;
+
+               // q++;
+            }
+            else{
+                mousemovement(U);
+                cout << "OUCH!";
+            }          
+
+
+        }
+        
+    box[mp_xo][mp_yo] = ' ';   
+    box[mp_x][mp_y] = 'M';
+   // cout << cp_x << cp_y << cp_xo << cp_yo << endl;
+    
+    xmposition = mp_x; ymposition = mp_y;
+    moldx = mp_xo; moldy = mp_yo;
+	//caught();
+
+}   
+void drawbox() {
+	cout << "Name: " << name << endl;
+	cout << "Score: " << score << endl;
+
+     int t = 7;
+      for (int i=0; i<8; ++i)
+       {
+        for (int j=0; j<8; ++j)
+            { 
+                cout << box[i][j];
+            }
+         cout << '\n';
+       }
+       
+       //Loading
+       	for (int i = 0; i <= t; i++){
+				for (int j = 0; j <= t; j++){ 
+					if 	(i == 0) {
+						if (j == 0){box[i][j] = 'A';}
+						else if (j < t and j !=0) {box[i][j] = 'B';}				// '-'
+						else if (j == t) {box[i][t] = 'C';}
+					}
+					else if (i < t and i != 0){
+						if(j == 0) {box[i][j] = 'D';}						//'|'
+						else if (j < t and j !=0) {box[i][j] = ' ';}						//' '
+						else if (j == t) {box[i][j] = 'E';}//char(179);}				
+					}
+					else if (i == t){
+						if (j == 0) {box[i][j] = 'F';}
+						else if (j < t and j !=0) {box[t][j] = 'G';}				// '_'
+						else if (j == t) {box[i][j] = 'H';}				// 'L'
+					}
+				}
+			}
+       
+       cout << endl;
+            
+    }
+void pmovement(int G) {
+        G=G-1;
+        int cp_x;
+        cp_x= xposition;
+        int cp_y;
+        cp_y = yposition;
+        
+        int cp_xo = oldx, cp_yo = oldy;
+
+		//caught();
+//for (int q=0; q > 1; q++) {  
+     int movement = 0;
+     cin >> movement;
+    
+    if(movement == 8)               //y
+        {
+            if (ery > 1){
+                ery--;  
+                cp_yo = cp_y;
+                cp_y = cp_y - 7;
+               // q++;
+            }
+            else{
+                cout << "You shoved your head in the wall";
+            }
+        }
+    else if(movement == 2)          //y
+        {
+            if (ery < G ){
+                ery++;  
+                cp_yo = cp_y;
+                cp_y = cp_y + 7;
+               // q++;
+            }
+            else{
+                cout << "You shoved your head in the wall";
+            }            
+        }
+    else if(movement == 4)          //x
+        {
+
+            if (erx > 1){
+                erx--;  
+                cp_xo = cp_x;
+                cp_yo =cp_y;
+                cp_y = cp_y -1;
+               // q++;
+            }
+            else{
+                cout << "You shoved your head in the wall";
+            }          
+
+
+        }
+    else if(movement == 6)          //x
+        { 
+            
+            if (erx < G){
+                erx++;  
+                cp_xo = cp_x;
+                cp_yo = cp_y;
+                cp_y = cp_y +1;
+
+               // q++;
+            }
+            else{
+                cout << "You shoved your head in the wall";
+            }          
+
+
+        }
+    else {
+        cout << "wrong inputs, only 8,6,2,4 are valid inputs";
+        //cin >> movement;
+    }   
+
+    box[cp_xo][cp_yo] = ' ';   
+    box[cp_x][cp_y] = 'P';
+    //cout << cp_x << cp_y << cp_xo << cp_yo << endl;
+    
+    xposition = cp_x; yposition = cp_y;
+		
+    oldx = cp_xo; oldy = cp_yo;
+            //caught();
+
+   // drawbox();
+	}
+    
+int main ()				// printing the name/score and play area
+{
+  cout << "Please type your name: ";
+  cin >> name;
+  cout << endl;
+
+    int t = 7;
+
+			//loading
+			
+    drawbox();
+    box[3][3]  = 'P';
+    box[1][1] = 'M';
+
+    
+  for(score; score != 5; ){
+    drawbox();
+   	//caught(); 
+    mousemovement(t);
+    //caught();
+    pmovement(t);
+	//caught();
+    } 
+	cout << "YOU WIN!!!!!!";
+    
+
+    
+
+    return 0;
+    
+    
+}
